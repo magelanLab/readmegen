@@ -165,6 +165,7 @@ class ReadmeGen
 
         return $this->decorator->setLog($log)
             ->setIssueTrackerUrlPattern($this->config['issue_tracker_pattern'])
+            ->setIssueTrackerKey($this->config['issue_tracker_key'])
             ->decorate();
     }
 

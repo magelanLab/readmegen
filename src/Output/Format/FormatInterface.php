@@ -19,6 +19,14 @@ interface FormatInterface {
     public function setIssueTrackerUrlPattern($pattern);
 
     /**
+     * Issue tracker key setter.
+     *
+     * @param $key
+     * @return mixed
+     */
+    public function setIssueTrackerKey($key);
+
+    /**
      * Decorates the output (e.g. adds linkgs to the issue tracker)
      *
      * @return self

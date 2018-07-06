@@ -1,8 +1,9 @@
 vcs: git
 format: md
-issue_tracker_pattern: http://some.issue.tracker.com/\1
+issue_tracker_key: /(MET-[0-9]+)/
+issue_tracker_pattern: '[#\1](https://dev-magelan.atlassian.net/browse/\1)'
 break: "## Changelog"
-output_file_name: "README.md"
+output_file_name: "CHANGELOG.md"
 message_groups:
   Features:
     - feature

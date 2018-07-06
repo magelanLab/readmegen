@@ -49,6 +49,19 @@ class Decorator
     }
 
     /**
+     * Issue tracker key setter.
+     *
+     * @param string $key
+     * @return $this
+     */
+    public function setIssueTrackerKey($key)
+    {
+        $this->formatter->setIssueTrackerKey($key);
+
+        return $this;
+    }
+
+    /**
      * Returns the decorated log.
      *
      * @return FormatInterface

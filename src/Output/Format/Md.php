@@ -19,6 +19,13 @@ class Md implements FormatInterface
     protected $pattern;
 
     /**
+     * Issue tracker key.
+     *
+     * @var string
+     */
+    protected $key;
+
+    /**
      * Output filename.
      *
      * @var string
@@ -66,6 +73,17 @@ class Md implements FormatInterface
     }
 
     /**
+     * @param string $key
+     * @return Md
+     */
+    public function setIssueTrackerKey($key)
+    {
+        $this->key = $key;
+
+        return $this;
+    }
+
+    /**
      * Decorates the output (e.g. adds linkgs to the issue tracker)
      *
      * @return self
@@ -86,7 +104,7 @@ class Md implements FormatInterface
      */
     protected function injectLinks(&$entry)
     {
-        $entry = preg_replace('/#(\d+)/', "[#\\1]({$this->pattern})", $entry);
+        $entry = preg_replace($this->key, $this->pattern, $entry);
     }
 
     /**
