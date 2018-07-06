@@ -1,8 +1,8 @@
 vcs: git
 format: md
-issue_tracker_key: /(MET-[0-9]+)/
-issue_tracker_pattern: '[#\1](https://dev-magelan.atlassian.net/browse/\1)'
-break: "## Changelog"
+issue_tracker_key: /(KEY-[0-9]+)/   #JIRA issue key system – You can use Github issue key system by replacing 'KEY-' tag by '#' tag
+issue_tracker_pattern: '[[\1]](http://some.issue.tracker.com/\1)' #Change URL by your own issue tracker URL. Don't delete '\1' at the end of the URL
+break: "#Changelog"
 output_file_name: "CHANGELOG.md"
 message_groups:
   Features:
@@ -11,7 +11,16 @@ message_groups:
   Bugfixes:
     - fix
     - bugfix
+  Breaking Changes:
+    - break
+  Design:
+    - design
   Documentation:
     - docs
   Refactoring:
     - refactoring
+    - refactor
+  Performance:
+    - perf
+  Chore :
+    - chore
