@@ -1,25 +1,13 @@
 # ReadmeGen
 
-[![Build Status](https://travis-ci.org/fojuth/readmegen.svg)](https://travis-ci.org/fojuth/readmegen)
+**Notice**: The package currently supports only GIT and the *.md output files. 
 
-## MAINTAINER NEEDED
-
-Sadly, I don't have the time to develop **readmegen**. It's great to see it's being used by many people! It would be sad if this project would die. Maybe you can help? There's not much work to do, since the community is very helpful and provides PRs.
-
-If you're willing to push **readmegen** further on, let me know.
-
----
-
-Generate your project's log using VCS commit messages.
-
-ReadmeGen is a PHP package that scans the VCS's log searching for messages with specific pattern. These messages are extracted, grouped and prepended to the changelog file (e.g. readme.md). The package can be instructed to fetch messages between specific tags (or commits). This way, whenever you're tagging a new release, you can run ReadmeGen to generate the changelog automatically.
-
-**Notice**: The package currently supports only GIT and the *.md output files. You can provide support for othe VCS's or output formats? Help welcome :)
+**Notice 2**: Don't forget to update config file `readmegen.yml` with your parameters.
 
 ### Installation
 #### Global installation (recommended)
 ```
-composer global require fojuth/readmegen:@stable
+composer global require magelan/readmegen
 ```
 
 You can read more about global installation in the [composer docs](https://getcomposer.org/doc/03-cli.md#global).
@@ -45,14 +33,14 @@ readmegen --from TAG --to TAG --release RELEASE_NUMBER --break BREAKPOINT
 
 For example:
 ```
-readmegen --from 1.12.0 --to 1.13.0 --release 1.13.0 --break *Changelog*
+readmegen --from 1.12.0 --to 1.13.0 --release 1.13.0 --break #Changelog
 ```
 
-This tells the script to generate a changelod update named `1.13.0` and that it should scan the log since tag `1.12.0` up to `1.13.0`. No earlier (or latter) commits will be taken into consideration. ReadmeGen will inject the generated log *after* the `*Changelog*` line.
+This tells the script to generate a changelog update named `1.13.0` and that it should scan the log since tag `1.12.0` up to `1.13.0`. No earlier (or latter) commits will be taken into consideration. ReadmeGen will create a `CHANGELOG.md file and inject the generated log *after* the `#Changelog` line.
 
 If you want to generate the changelog from a specific tag (or commit checksum) up to the latest commit (`HEAD`) just omit the `--to` argument:
 ```
-readmegen --from a04cf99 --release 1.13.0 --break *Changelog*
+readmegen --from a04cf99 --release 1.13.0 --break #Changelog
 ```
 
 You can also specify the breakpoint in the `readmegen.yml` config file so the command will be even cleaner:
@@ -63,7 +51,7 @@ readmegen --from a04cf99 --release 1.13.0
 ### Message format
 ReadmeGen will search for messages that start with a specific keyword. These keywords tell the script to which group the commit should be appended. The message groups can be overwritten.
 
-For example - the default configuration supports four types of commits: Features, Bugfixes, Documentation and Refactoring. The commit will be appended to a certain group only if it starts with a specific word. The default config allows two keywords for bugfixes: `bugfix` and `fix`. This means, that for a message to be appended to the Bugfix group it has to start with either `bugfix: blabla` or `Fix: foo bar` (notice the colon `:` sign - it has to be right after the keyword). The keywords are case insensitive.
+For example - the default configuration supports four types of commits: Features, Bugfixes, Documentation, Design, Performance, Chore and Refactoring. The commit will be appended to a certain group only if it starts with a specific word. The default config allows two keywords for bugfixes: `bugfix` and `fix`. This means, that for a message to be appended to the Bugfix group it has to start with either `bugfix: blabla` or `Fix: foo bar` (notice the colon `:` sign - it has to be right after the keyword). The keywords are case insensitive.
 
 All commits that do not fit into any of the groups will be ignored (we don't want merges and stuff like that in the changelog).
 
@@ -87,12 +75,14 @@ ReadmeGen can link issues to a issue tracker - all numbers starting with `#` wil
 The default config holds the definitions of commit groups and the issue link pattern. It also specifies which VCS to use and the type of the output file. You can override these settings (project-wide) by creating a `readmegen.yml` file in the root dir of your project. When ReadmeGen will be run it will check if this file exists and merge the settings accordingly.
 
 The default `readmegen.yml` config looks like this:
+
 ```
 vcs: git
 format: md
-issue_tracker_pattern: http://some.issue.tracker.com/\1
-break: "## Changelog"
-output_file_name: "README.md"
+issue_tracker_key: /(KEY-[0-9]+)/
+issue_tracker_pattern: '[[\1]](http://some.issue.tracker.com/\1)'
+break: "#Changelog"
+output_file_name: "CHANGELOG.md"
 message_groups:
   Features:
     - feature
@@ -100,13 +90,27 @@ message_groups:
   Bugfixes:
     - fix
     - bugfix
+  Design:
+      - design
   Documentation:
     - docs
   Refactoring:
     - refactoring
+    - refactor
+  Performance:
+    - perf
+  Chore :
+    - chore
 ```
 
 Each of the `message_groups` key is the name of the group that will be put in the changelog. The values inside the group  are the keywords the commit must start with (followed by the colon `:` sign) to be appended to that group.
+
+`issue_tracker_key= /(KEY-[0-9]+)/` is the key used by your Issues Tracker (i.e. *JIRA*, *Github*, or anything else).
+ 
+ The way it works depends on your Issue Tracker service. Here some examples :
+ 
+ 1. For *JIRA* : replace `KEY` by **your project key**
+ 2. For *Github* : replace `KEY-` by `#`
 
 ### Release number
 ReadmeGen requires a release number (`--release`) to be provided. This will be the title of the generated changelog.
@@ -116,11 +120,11 @@ By default the changes will go onto the beginning of the changelog file. You can
 
 For example:
 ```
-readmegen --from 1.12.0 --to 1.13.0 --release 1.3.3 --break *Changelog*
+readmegen --from 1.12.0 --to 1.13.0 --release 1.3.3 --break #Changelog
 ```
-The script will append the changes *below* the line that contains the `*Changelog*` phrase. This should be the only phrase in this line. If you use the CLI argument method (`--break`), the breakpoint **must not contain spaces**. Thus you are encouraged to use the config method - you can use spaces there, as shown in the default config.
+The script will append the changes *below* the line that contains the `#Changelog` phrase. This should be the only phrase in this line. If you use the CLI argument method (`--break`), the breakpoint **must not contain spaces**. Thus you are encouraged to use the config method - you can use spaces there, as shown in the default config.
 
-ReadmeGen will search for the `## Changelog` breakpoint by default. If the breakpoint phrase is not found, the output will go onto the beginning of the changelog file.
+ReadmeGen will search for the `# Changelog` breakpoint by default. If the breakpoint phrase is not found, the output will go onto the beginning of the changelog file.
 
 ### Example commits
 Here are some example commit messages that will be grabbed by ReadmeGen (with the default config):
