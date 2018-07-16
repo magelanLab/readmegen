@@ -1,3 +1,11 @@
+## 1.2.2
+*(2018-07-16)*
+
+#### Documentation
+* Update Link patterns in Readme
+
+---
+
 ## 1.2.1
 *(2018-07-16)*
 
