@@ -1,6 +1,6 @@
 {
     "name": "magelan/readmegen",
-    "description": "Readme file / doc generator. It uses VCS logs as a source of information.",
+    "description": "Readme file / doc generator. It uses VCS logs as a source of information. It also links commits with Github or Jira issues trackers.",
     "keywords": ["readme", "generator", "log parser", "vcs"],
     "license": "MIT",
     "authors": [

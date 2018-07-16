@@ -90,8 +90,10 @@ message_groups:
   Bugfixes:
     - fix
     - bugfix
+  Breaking Changes:
+    - break
   Design:
-      - design
+    - design
   Documentation:
     - docs
   Refactoring:
@@ -137,6 +139,19 @@ feat: Some more cool stuff
 
 ## Changelog
 ## 1.2.0
+*(2018-07-16)*
+
+#### Features
+* Update config file
+* Add bitbucket issue tracker support
+
+#### Documentation
+* Update Readme & License
+
+---
+
+
+## 1.1.3
 *(2017-12-10)*
 
 #### Bugfixes
