@@ -1,7 +1,7 @@
 <?php namespace ReadmeGen\Input;
 
-use Ulrichsg\Getopt\Getopt;
-use Ulrichsg\Getopt\Option;
+use GetOpt\GetOpt;
+use GetOpt\Option;
 
 /**
  * Input parser.
@@ -14,7 +14,7 @@ class Parser
     /**
      * CLI input parser.
      *
-     * @var Getopt
+     * @var GetOpt
      */
     protected $handler;
 
@@ -28,12 +28,12 @@ class Parser
     public function __construct()
     {
         // Register possible input arguments.
-        $this->handler = new Getopt(array(
-            new Option('r', 'release', Getopt::REQUIRED_ARGUMENT),
-            new Option('f', 'from', Getopt::REQUIRED_ARGUMENT),
-            new Option('t', 'to', Getopt::OPTIONAL_ARGUMENT),
-            new Option('b', 'break', Getopt::OPTIONAL_ARGUMENT),
-        ));
+        $this->handler = new GetOpt([
+            Option::create('r', 'release', GetOpt::REQUIRED_ARGUMENT),
+            Option::create('f', 'from', GetOpt::REQUIRED_ARGUMENT),
+            Option::create('t', 'to', GetOpt::OPTIONAL_ARGUMENT),
+            Option::create('b', 'break', GetOpt::OPTIONAL_ARGUMENT),
+        ]);
     }
 
     /**
@@ -51,9 +51,9 @@ class Parser
     }
 
     /**
-     * Parses the input and returns the Getopt handler.
+     * Parses the input and returns the GetOpt handler.
      *
-     * @return Getopt
+     * @return GetOpt
      */
     public function parse()
     {

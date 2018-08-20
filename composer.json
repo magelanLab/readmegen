@@ -15,7 +15,7 @@
   ],
   "require": {
     "symfony/yaml": "^4.1 || ~2.1",
-    "ulrichsg/getopt-php": "2.*"
+    "ulrichsg/getopt-php": "^3.0"
   },
   "require-dev": {
     "phpspec/phpspec": "^2.5"
