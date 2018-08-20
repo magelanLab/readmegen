@@ -14,7 +14,7 @@ You can read more about global installation in the [composer docs](https://getco
 
 #### Local installation
 ```
-composer require fojuth/readmegen:1.*
+composer require magelan/readmegen
 ```
 
 #### Windows installation
