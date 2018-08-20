@@ -1,6 +1,9 @@
 ## 1.2.3
 *(2018-08-20)*
 
+#### Bugfixes
+* Correct wrong local installation package
+
 #### Chore
 * Update dependency ulrichsg/getopt-php from v2 to v3
 * Update dependency symfony/yaml from v3 to v4
