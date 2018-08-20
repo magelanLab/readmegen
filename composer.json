@@ -1,29 +1,34 @@
 {
-    "name": "magelan/readmegen",
-    "description": "Readme file / doc generator. It uses VCS logs as a source of information. It also links commits with Github or Jira issues trackers.",
-    "keywords": ["readme", "generator", "log parser", "vcs"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Magelan"
-        }
-    ],
-    "require": {
-        "symfony/yaml": "^3.2 || ~2.1",
-        "ulrichsg/getopt-php": "2.*"
-    },
-    "require-dev": {
-        "phpspec/phpspec": "^2.5"
-    },
-    "config": {
-        "bin-dir": "bin"
-    },
-    "bin": [
-        "readmegen"
-    ],
-    "autoload": {
-        "psr-4": {
-            "ReadmeGen\\": "src/"
-        }
+  "name": "magelan/readmegen",
+  "description": "Readme file / doc generator. It uses VCS logs as a source of information. It also links commits with Github or Jira issues trackers.",
+  "keywords": [
+    "readme",
+    "generator",
+    "log parser",
+    "vcs"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Magelan"
     }
+  ],
+  "require": {
+    "symfony/yaml": "^4.1 || ~2.1",
+    "ulrichsg/getopt-php": "^3.0"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^2.5"
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "bin": [
+    "readmegen"
+  ],
+  "autoload": {
+    "psr-4": {
+      "ReadmeGen\\": "src/"
+    }
+  }
 }
