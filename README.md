@@ -138,59 +138,21 @@ feat: Some more cool stuff
 ```
 
 ## Changelog
+## 1.2.3
+*(2018-08-20)*
+
+#### Chore
+* Update dependency ulrichsg/getopt-php from v2 to v3
+* Update dependency symfony/yaml from v3 to v4
+
+---
+
 ## 1.2.0
 *(2018-07-16)*
 
 #### Features
 * Update config file
-* Add bitbucket issue tracker support
+* Add JIRA issue tracker support
 
 #### Documentation
 * Update Readme & License
-
----
-
-
-## 1.1.3
-*(2017-12-10)*
-
-#### Bugfixes
-* Use symfony yaml 3.2
-* Use phpspec version ^2.5 ((thanks to [murrant](https://github.com/murrant)))
-
----
-
-## 1.1.2
-*(2015-07-12)*
-
-#### Features
-* Change output file name (thanks to [reva2](https://github.com/reva2))
-
-#### Bugfixes
-* Added missing new line character in example usage message (thanks to [reva2](https://github.com/reva2))
-
----
-
-## 1.1.1
-*(2015-01-04)*
-
-#### Features
-* Added .travis.yml
-
----
-
-## 1.1.0
-*(2014-12-30)*
-
-#### Features
-* Added "break" to the readmegen.yml default config file. It has a default value set and can be overwritten locally.
-
----
-
-## 1.0.2
-*(2014-12-30)*
-
-#### Bugfixes
-* The release date is extracted from the --to commit.
-
----
